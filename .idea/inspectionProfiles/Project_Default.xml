@@ -1,0 +1,53 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyChainedComparisonsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoreConstantInTheMiddle" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E501" />
+          <option value="E266" />
+          <option value="E122" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+          <option value="N801" />
+          <option value="N802" />
+          <option value="N803" />
+          <option value="N812" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredNames">
+        <list>
+          <option value="type" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="list.__getitem__" />
+          <option value="utilities.data_structure.prioritized_replay_buffer_google.circular_replay_buffer.OutOfGraphReplayBuffer._create_stroge" />
+          <option value="int.float" />
+          <option value="agemt_name" />
+          <option value="object.__getitem__" />
+          <option value="hidden_layer" />
+          <option value="agents.utils.soft_update_target_network" />
+          <option value="agents.utils.hard_update_target_network" />
+          <option value="torch.cuda.manual_seed_all" />
+          <option value="torch.cuda.manual_seed" />
+          <option value="torch.backends" />
+          <option value="multiprocessing.pool.ApplyResult.__getitem__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

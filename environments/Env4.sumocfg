@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <configuration >
+        <input>
+            <net-file value="NGL_baseline.net.xml"/>
+            <route-files value="Env4.rou.xml"/>
+            <additional-files value="NGL_baseline.add.xml"/>
+        </input>
+        <time>
+            <begin value="0"/>
+        </time>
+        <Processing>
+            <lateral-resolution value="0.5"/>
+            <ignore-junction-blocker value="100000"/>
+        </Processing>
+        <report>
+            <verbose value="true"/>
+            <no-step-log value="true"/>
+        </report>
+    </configuration>
+            

@@ -190,14 +190,14 @@ class Trainer(object):
         """
         env = gym.make('sumo-rl-v1',
                        yellow=[self.yellow] * self.num_agent,
-                       num_stage=self.num_stage,  # Be careful with the continuous action space pattern!!!
                        num_agent=self.num_agent,
+                       num_stage=self.num_stage,
                        use_gui=False,
-                       net_file='envs/sumo_files/NGL_baseline.net.xml',
-                       route_file='envs/sumo_files/Env3.rou.xml',
-                       addition_file='envs/sumo_files/NGL_baseline.add.xml',
+                       net_file='envs/4_4.net.xml',
+                       route_file='envs/4_4_high.rou.xml',
+                       addition_file='envs/4_4.add.xml',
                        max_step_round=3600,
-                       pattern=self.pattern
+                       observation_pattern=self.pattern,
                        )
 
         agents = self.initialize_agents(worker_idx)
@@ -208,7 +208,6 @@ class Trainer(object):
         norm_std = np.ones(shape=(self.num_agent, self.obs_dim))
 
         i_episode = 0
-        old_step = 0
 
         ### TRAINING LOGIC ###
         while i_episode < self.max_episodes:
@@ -227,6 +226,8 @@ class Trainer(object):
                     values, actions, logp_actions = self.unbatchify(value_action_logp, info['agents_to_update'])
 
                     next_state, reward, done, truncated, info = env.step(actions)
+                    # print('agents_to_update', info['agents_to_update'])
+                    # print('reward', reward)
                     if self.action_space_pattern == 'continuous':
                         [self.push_history_continuous(i, observations[i], value_action_logp[i][1], logp_actions[i], values[i])
                          for i in range(self.num_agent) if agents_to_update[i] == 1]
@@ -252,9 +253,7 @@ class Trainer(object):
                     elif self.action_space_pattern == 'hybrid':
                         [self.push_history_hybrid(i, observations[i], actions[0][i], value_action_logp[i][1][1], logp_actions[0][i], logp_actions[1][i], values[i])
                          for i in range(self.num_agent) if agents_to_update[i] == 1]
-                        # print(self.history[0])
-                        # print(info['agents_to_update'][0])
-                        # print(self.history)
+
                         [agents[i].buffer.store_hybrid(self.history[i]['obs'], self.history[i]['act_dis'], self.history[i]['act_con'], reward[i], self.history[i]['val'], self.history[i]['logp_act_dis'], self.history[i]['logp_act_con'])
                          for i in range(self.num_agent) if info['agents_to_update'][i] == 1]
 
@@ -267,10 +266,13 @@ class Trainer(object):
                     agents_to_update = info['agents_to_update']
 
                     # for evaluation
-                    monitor.push_into_monitor(sum(info['queue']), sum(info['waiting_time']))
+                    # monitor.push_into_monitor(sum(info['queue']), sum(info['waiting_time']))
 
-                    if done:
-                        env.close()
+                    # print(info['queue'].sum(), info['queue'])
+
+                    monitor.push_into_monitor(info['queue'], info['queue'])
+
+                    if info['terminated']:
                         i_episode += 1
                         [agents[i].buffer.finish_path(0) for i in range(self.num_agent)]
                         break
@@ -280,6 +282,7 @@ class Trainer(object):
                 for i in range(self.num_agent):
                     norm_mean[i] = np.tile(agents[i].buffer.filter()[0], self.obs_dim)
                     norm_std[i] = np.tile(agents[i].buffer.filter()[1], self.obs_dim)
+                print(norm_mean, norm_std)
                 if i_episode > 1:
                     [agents[i].update(self.batch_size) for i in range(self.num_agent)]
                 [agents[i].buffer.clear() for i in range(self.num_agent)]
@@ -296,7 +299,7 @@ class Trainer(object):
             episode_score, rolling_score = monitor.output_from_monitor()
 
             if i_episode % 5 == 0:
-                self.save_data(rolling_score, {'mean': norm_mean, 'std':norm_std}, worker_idx)
+                self.save_data(rolling_score, {'mean': norm_mean, 'std': norm_std}, worker_idx)
                 self.visualize_one_episode(i_episode, worker_idx, episode_score)
 
 
@@ -317,7 +320,7 @@ if __name__ == '__main__':
     parser.add_argument('--lr_decay_rate', type=float, default=0.995, help='Factor of learning rate decay.')
     parser.add_argument('--mid_dim', type=list, default=[256, 128, 64], help='The middle dimensions of both nets.')
     parser.add_argument('--gamma', type=float, default=0.99, help='Discounted of future rewards.')
-    parser.add_argument('--lam', type=float, default=0.95,
+    parser.add_argument('--lam', type=float, default=0.8,
                         help='Lambda for GAE-Lambda. (Always between 0 and 1, close to 1.)')
     parser.add_argument('--epochs_update', type=int, default=20,
                         help='Maximum number of gradient descent steps to take on policy loss per epoch. (Early stopping may cause optimizer to take fewer than this.)')
@@ -333,17 +336,17 @@ if __name__ == '__main__':
                         help='The initial log_std of Normal in continuous pattern.')
     parser.add_argument('--coeff_dist_entropy', type=float, default=0.005,
                         help='The coefficient of distribution entropy.')
-    parser.add_argument('--random_seed', type=int, default=4, help='The random seed.')
-    parser.add_argument('--action_space_pattern', type=str, default='continuous',
+    parser.add_argument('--random_seed', type=int, default=1, help='The random seed.')
+    parser.add_argument('--action_space_pattern', type=str, default='hybrid',
                         help='The control pattern of the action.')
-    parser.add_argument('--record_mark', type=str, default='single_env3',
+    parser.add_argument('--record_mark', type=str, default='coco',
                         help='The mark that differentiates different experiments.')
     parser.add_argument('--if_use_active_selection', type=bool, default=False,
                         help='Whether use active selection in the exploration.')
     parser.add_argument('--init_bonus', type=float, default=0.01, help='The initial active selection bonus.')
-    parser.add_argument('--sumocfg', type=str, default='Env3', help='The initial active selection bonus.')
-    parser.add_argument('--num_stage', type=int, default=4)
-    parser.add_argument('--num_agent', type=int, default=1)
+    parser.add_argument('--sumocfg', type=str, default='Env4', help='The initial active selection bonus.')
+    parser.add_argument('--num_stage', type=int, default=8)
+    parser.add_argument('--num_agent', type=int, default=16)
     parser.add_argument('--yellow', type=int, default=3)
     parser.add_argument('--delta_time', type=int, default=15)
     parser.add_argument('--max_green', type=int, default=40)
@@ -361,13 +364,13 @@ if __name__ == '__main__':
 
     # training through multiprocess
     trainer = Trainer(args)
-    # trainer.train(0)
+    trainer.train(0)
 
     # trainer.plot()
 
-    args_tuple = [[31], [32], [33], [34], [35], [36], [37], [38]]
-    pool = Pool(processes=8)
-    for arg in args_tuple:
-        pool.apply_async(trainer.train, arg)
-    pool.close()
-    pool.join()
+    # args_tuple = [[31], [32], [33], [34], [35], [36]]
+    # pool = Pool(processes=6)
+    # for arg in args_tuple:
+    #     pool.apply_async(trainer.train, arg)
+    # pool.close()
+    # pool.join()

@@ -7,17 +7,19 @@
 #include <libsumo/libsumo.h>
 
 namespace libsumo {
-namespace trafficlight{
 
-class TrafficLightImp
-{
+class TrafficLightImp {
 public:
     TrafficLightImp(std::string tlsID_, int yellowTime_);
     ~TrafficLightImp();
 
-    void subscribe();
+    int check();
     void schedulePop();
     void setStageDuration(int stage, int duration);
+    
+    template<typename Func, typename... Args>
+    auto TrafficLightImp::retrieve(Func f, Args... args) -> decltype(f(std::forward<Args>(args)...));
+
 
 private:
     int stagePre;
@@ -27,10 +29,11 @@ private:
     std::deque<int> schedule;
     std::vector<std::string> inlanes;
     std::vector<std::string> outlanes;
+    std::vector<std::vector<int>> mapping;
 
 };
-}
-}
+
+} // namespace libsumo
 
 
 

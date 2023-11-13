@@ -121,7 +121,7 @@ class TrafficSignal:
         self.inlane_halting_vehicle_number = np.array(
             [list(self.sumo.lane.getSubscriptionResults(lane_id).values())[0] for lane_id in self.in_lanes])
 
-        self.outlane_halting_vehicle_number = np.array(
+        self.= np.array(
             [list(self.sumo.lane.getSubscriptionResults(lane_id).values())[0] for lane_id in self.out_lanes])
 
         self.inlane_waiting_time = np.array(

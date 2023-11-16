@@ -1,5 +1,5 @@
-#ifndef TRAFFICLIGHT_H
-#define TRAFFICLIGHT_H
+#ifndef TRAFFIC_LIGHT_H
+#define TRAFFIC_LIGHT_H
 
 #include <string>
 #include <vector>
@@ -17,24 +17,19 @@ class TrafficLightImp {
     inline void SchedulePop();
     void SetStageDuration(int stage, int duration);
 
-    template<typename Func, typename... Args>
-    auto retrieve(Func f, Args... args) -> decltype(f(std::forward<Args>(args)...));
+    
     void UpdateLanes();
 
  private:
     int stage_pre_;
     int yellow_time_;
-    std::string tls_id_;
+    std::string tl_ids_;
     std::deque<int> schedule_;
     std::vector<std::vector<int>> mapping_;
-
-    std::vector<int> in_lanes_;
-    std::vector<int> out_lanes_;
-
     void ExtendGreenLight();
-    void RemoveElements(std::vector<int>& lanes);
+
 };
 
 } // namespace libsumo
 
-#endif // TRAFFICLIGHT_H
+#endif // TRAFFIC_LIGHT_H

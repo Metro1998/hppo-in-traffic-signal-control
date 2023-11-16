@@ -5,10 +5,9 @@
 
 namespace libsumo {
 
-
-TrafficLightImp::TrafficLightImp(const std::string& tls_id , int yellow_time) : tls_id_(tls_id), yellow_time_(yellow_time) {
-    stage_pre_ = -1;
-    stage_cur_ = -1;
+// Constructor
+TrafficLightImp::TrafficLightImp(const std::string& tls_id , int yellow_time) 
+    : tls_id_(tls_id), yellow_time_(yellow_time), stage_pre_(-1) {
     mapping_ = {
         {-1, 8, 8, 8, 9, 8, 10, 8},
         {11, -1, 11, 11, 11, 12, 11, 13},
@@ -21,80 +20,68 @@ TrafficLightImp::TrafficLightImp(const std::string& tls_id , int yellow_time) : 
     };
 }
 
+// Destructor
 TrafficLightImp::~TrafficLightImp() {
-    // Clean up resources if neededcomdadada
+    // Clean up resources if needed
 }
 
+// Check method
 int TrafficLightImp::Check() {
-    // Check if the schedule is empty first. If it is, throw an exception.
     if (schedule_.empty()) {
         throw std::runtime_error("Error: Schedule is empty.");
     }
-
-    // Check whether the yellow stage is over and automatically extend the green light.
-    // | 0 | 0 | 0 | 16 |  --->  | 0 | 0 | 0 | 0 | ... | 0 | -1 |
-    //                                       {     16X     } where -1 indicates that the agent should get a new action
-    if (schedule_.front() > 0) {
-        TrafficLight::setPhase(tls_id_, stage_pre_);
-        for (int i = 0; i < schedule_.front(); ++i) {
-            schedule_.push_back(0);
-        }
-        schedule_.pop_front();
-        schedule_.push_back(-1);
-    }
-
+    ExtendGreenLight();
     return schedule_.front();
 }
 
+// SchedulePop method
 void TrafficLightImp::SchedulePop() {
     schedule_.pop_front();
 }
 
+// SetStageDuration method
 void TrafficLightImp::SetStageDuration(const int stage, const int duration) {
-    if (stage_pre_ != -1 && stage_pre_ != stage_cur_){
-        int statge = mapping_[stage_pre_][stage_cur_];
-        TrafficLight::setPhase(tls_id_, stage);
-        for (int i = 0; i < yellow_time_; ++i){
-            schedule_.push_back(0);
-        }
+    if (stage_pre_ != -1 && stage_pre_ != stage){
+        int yellow_stage = mapping_[stage_pre_][stage];
+        TrafficLight::setPhase(tls_id_, yellow_stage);
+        std::fill_n(std::back_inserter(schedule_), yellow_time_, 0);
     }
-
-    stage_pre_ = stage_cur_;
+    stage_pre_ = stage;
     schedule_.push_back(duration);
-    
 }
 
-// Define a template function that accepts a function pointer and a variable number of arguments
+// Template retrieve function
 template<typename Func, typename... Args>
 auto TrafficLightImp::retrieve(Func f, Args... args) -> decltype(f(std::forward<Args>(args)...)) {
-    // Use std::invoke to call the function and std::forward to keep the arguments in perfect condition
     return std::invoke(f, std::forward<Args>(args)...);
 }
 
+// UpdateLanes method
 void TrafficLightImp::UpdateLanes() {
     auto all_conns = TrafficLight::getControlledLinks(this->tls_id_);
     for_each(all_conns.begin(), all_conns.end(), [this](const auto& conn){
-        // todo
         in_lanes_.emplace_back(conn.first.first);
         out_lanes_.emplace_back(conn.first.second);
     });
-
     RemoveElements(in_lanes_);
     RemoveElements(out_lanes_);
 }
 
-
-void TrafficLightImp::RemoveElements(std::vector<int>& lanes) {
-        for (int i = lanes.size() - 1; i >= 0; --i) {
-            if (i % 3 == 0 || i % 2 == 0) {
-                lanes.erase(lanes.begin() + i);
-            }
-        }
+// ExtendGreenLight method
+void TrafficLightImp::ExtendGreenLight() {
+    if (schedule_.front() > 0) {
+        TrafficLight::setPhase(tls_id_, stage_pre_);
+        schedule_.insert(schedule_.end(), schedule_.front(), 0);
+        schedule_.pop_front();
+        schedule_.push_back(-1);
     }
+}
 
-
-
-// You might also need to implement other functions or utilities that are necessary
-// for the operation of your TrafficLightImp class
+// RemoveElements method
+void TrafficLightImp::RemoveElements(std::vector<int>& lanes) {
+    lanes.erase(std::remove_if(lanes.begin(), lanes.end(),
+                               [i = 0](const auto&) mutable { return i++ % 3 == 0 || i % 2 == 0; }),
+                lanes.end());
+}
 
 } // namespace libsumo

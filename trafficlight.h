@@ -14,7 +14,7 @@ class TrafficLightImp {
     ~TrafficLightImp();
 
     int Check();
-    void SchedulePop();
+    inline void SchedulePop();
     void SetStageDuration(int stage, int duration);
 
     template<typename Func, typename... Args>
@@ -23,7 +23,6 @@ class TrafficLightImp {
 
  private:
     int stage_pre_;
-    int stage_cur_;
     int yellow_time_;
     std::string tls_id_;
     std::deque<int> schedule_;
@@ -32,6 +31,7 @@ class TrafficLightImp {
     std::vector<int> in_lanes_;
     std::vector<int> out_lanes_;
 
+    void ExtendGreenLight();
     void RemoveElements(std::vector<int>& lanes);
 };
 

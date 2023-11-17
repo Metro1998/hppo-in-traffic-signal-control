@@ -9,8 +9,9 @@
 #include <unordered_map>
 #include "libsumo/libsumo.h"
 
-namespace libsumo {
 
+using TrafficLight = libsumo::TrafficLight;
+using Lane = libsumo::Lane;
 using string = std::string;
 template <typename T>
 using vector = std::vector<T>;
@@ -109,16 +110,6 @@ class RetrieveReward : public RetrieveStrategy {
 
 
 
-
-
-
-
-
-
-
-
-
-}
 
 
 

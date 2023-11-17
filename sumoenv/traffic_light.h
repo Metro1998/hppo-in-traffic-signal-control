@@ -6,8 +6,6 @@
 #include <deque>
 #include <libsumo/libsumo.h>
 
-namespace libsumo {
-
 class TrafficLightImp {
  public:
     TrafficLightImp(const std::string& tls_id, int yellow_time);
@@ -30,6 +28,5 @@ class TrafficLightImp {
 
 };
 
-} // namespace libsumo
 
 #endif // TRAFFIC_LIGHT_H

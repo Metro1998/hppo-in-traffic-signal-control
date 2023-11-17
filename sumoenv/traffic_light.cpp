@@ -3,7 +3,7 @@
 #include <functional>
 #include <utility>
 
-namespace libsumo {
+using TrafficLight = libsumo::TrafficLight;
 
 // Constructor
 TrafficLightImp::TrafficLightImp(const std::string& tls_id , int yellow_time) 
@@ -60,5 +60,3 @@ void TrafficLightImp::ExtendGreenLight() {
         schedule_.push_back(-1);
     }
 }
-
-} // namespace libsumo

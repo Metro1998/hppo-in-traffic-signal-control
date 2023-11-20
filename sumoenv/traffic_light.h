@@ -16,7 +16,7 @@ class TrafficLightImp {
     void SetStageDuration(int stage, int duration);
 
     
-    void UpdateLanes();
+   //  void UpdateLanes();
 
  private:
     int stage_pre_;

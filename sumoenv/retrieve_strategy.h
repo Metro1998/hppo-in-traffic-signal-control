@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <iostream>
+#include <any>
 #include "libsumo/libsumo.h"
 
 
@@ -20,13 +22,13 @@ using vector = std::vector<T>;
 class RetrieveStrategy {
   public:
     RetrieveStrategy() = default;
-    decltype(auto) Retrieve() {;}
+    virtual std::any Retrieve() = 0;
     virtual ~RetrieveStrategy() = default;
 
   protected:
     vector<string> tl_ids_;
-    std::unordered_map<string, vector<libsumo::TraCILink>> in_lanes_map_;
-    std::unordered_map<string, vector<libsumo::TraCILink>> out_lanes_map_; // to_sting?
+    std::unordered_map<string, vector<string>> in_lanes_map_;
+    // std::unordered_map<string, vector<string>> out_lanes_map_; // to_sting?
 
     void ProcessTlsId() {
       tl_ids_ = TrafficLight::getIDList();
@@ -34,13 +36,24 @@ class RetrieveStrategy {
 
     void ProcessLanes() {
       for (const auto& tl_id : tl_ids_) {
-        auto all_conns = TrafficLight::getControlledLinks(tl_id);
-        for_each(all_conns.begin(), all_conns.end(), [this, tl_id](const auto& conn){
-          in_lanes_map_[tl_id].emplace_back(conn[1]);
-          out_lanes_map_[tl_id].emplace_back(conn[0]);
-        });
-        RemoveElements(in_lanes_map_[tl_id]);
-        RemoveElements(out_lanes_map_[tl_id]);
+        in_lanes_map_[tl_id] = TrafficLight::getControlledLanes(tl_id);
+        // for (int i = 0; i < all_links.size(); i++){
+        //   std::cout << all_links[i] << std::endl;
+        // }
+        // auto all_conns = TrafficLight::getControlledLinks(tl_id);
+
+        // for (int i = 0; i < all_conns.size(); i++){
+        //   for (int j = 0; j < all_conns[0].size(); j++){
+        //     std::cout << all_conns[i][j].fromLane << " " << all_conns[i][j].viaLane << " " << all_conns[i][j].toLane << std::endl;
+        //   }
+        // }
+        // for_each(all_conns.begin(), all_conns.end(), [this, tl_id](const auto& conn){
+        //   // std::cout << conn[0].from << conn[1] << conn[2] << std::endl;
+        //   in_lanes_map_[tl_id].emplace_back(conn[1]);
+        //   out_lanes_map_[tl_id].emplace_back(conn[0]);
+        // });
+        // RemoveElements(in_lanes_map_[tl_id]);
+        // RemoveElements(out_lanes_map_[tl_id]);
       } 
     }
     
@@ -57,15 +70,15 @@ class RetrieveStrategy {
 };
 
 
-class RetrieveObservation : public RetrieveStrategy {
+class ObservationStrategy : public RetrieveStrategy {
   public:
-    RetrieveObservation() : RetrieveStrategy() {
+    ObservationStrategy() : RetrieveStrategy() {
       // Process the data you need for calculating observations and rewards here.
         ProcessTlsId();
         ProcessLanes();
     }
 
-    decltype(auto) Retrieve() {
+    std::any Retrieve() override {
       // Rewrite the Retrieve method to implement your own reward design or state representation.
       // Here we use 'hide' ranther than 'override' from virtual function to support decltype(auto) return type.
       vector<vector<int>> observation;
@@ -73,6 +86,7 @@ class RetrieveObservation : public RetrieveStrategy {
       for (const string& tl_id : tl_ids_) {
         vector<int> lane_vehicles_for_tl;
         for (const auto& lane_id : in_lanes_map_[tl_id]) {
+          std::cout << lane_id << std::endl;
           int lane_vehicles = Lane::getLastStepHaltingNumber(lane_id);
           lane_vehicles_for_tl.push_back(lane_vehicles);
         }
@@ -83,15 +97,15 @@ class RetrieveObservation : public RetrieveStrategy {
 };
 
 
-class RetrieveReward : public RetrieveStrategy {
+class RewardStrategy : public RetrieveStrategy {
   public:
-    RetrieveReward() : RetrieveStrategy() {
+    RewardStrategy() : RetrieveStrategy() {
       // Process the data you need for calculating observations and rewards here.
         ProcessTlsId();
         ProcessLanes();
     }
 
-    decltype(auto) Retrieve() {
+    std::any Retrieve() override {
       // Rewrite the Retrieve method to implement your own reward design or state representation.
       // Here we use 'hide' ranther than 'override' from virtual function to support decltype(auto) return type.
       vector<int> reward;

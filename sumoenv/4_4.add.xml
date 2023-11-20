@@ -1,0 +1,695 @@
+<additional>
+  <tlLogic id="intersection_1_1" programID="Metro" offset="0" type="static">
+
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+
+  </tlLogic>
+
+    <tlLogic id="intersection_1_2" programID="Metro" offset="0" type="static">
+      <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_1_3" programID="Metro" offset="0" type="static">
+       <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_1_4" programID="Metro" offset="0" type="static">
+        <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_2_1" programID="Metro" offset="0" type="static">
+       <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_2_2" programID="Metro" offset="0" type="static">
+       <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+
+  <tlLogic id="intersection_2_3" programID="Metro" offset="0" type="static">
+        <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+    <tlLogic id="intersection_2_4" programID="Metro" offset="0" type="static">
+
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+
+  </tlLogic>
+
+    <tlLogic id="intersection_3_1" programID="Metro" offset="0" type="static">
+      <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_3_2" programID="Metro" offset="0" type="static">
+       <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_3_3" programID="Metro" offset="0" type="static">
+        <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_3_4" programID="Metro" offset="0" type="static">
+       <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+    <tlLogic id="intersection_4_1" programID="Metro" offset="0" type="static">
+       <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+
+
+  <tlLogic id="intersection_4_2" programID="Metro" offset="0" type="static">
+        <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+    <tlLogic id="intersection_4_3" programID="Metro" offset="0" type="static">
+
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+
+  </tlLogic>
+
+    <tlLogic id="intersection_4_4" programID="Metro" offset="0" type="static">
+      <phase duration="100"  state="gggGGGrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggGGGrrr"/>
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrrGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrrGGG"/>
+    <phase duration="100"  state="gggGGGGGGgggrrrrrrgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggGGGGGGgggrrrrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGGGGgggrrrrrr"/>
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGGGG"/>
+
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggGGGrrrgggrrrrrrgggyyyrrrgggrrrrrr"/>
+    <phase duration="100"  state="gggyyyrrrgggrrrrrrgggGGGrrrgggrrrrrr"/>
+
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGrrrgggrrrrrrgggyyyrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyrrrgggrrrrrrgggGGGrrr" />
+
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrGGGgggrrrrrrgggrrryyygggrrrrrr" />
+    <phase duration="100"  state="gggrrryyygggrrrrrrgggrrrGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrGGGgggrrrrrrgggrrryyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrryyygggrrrrrrgggrrrGGG" />
+
+    <phase duration="100"  state="gggGGGyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyGGGgggrrrrrrgggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggyyyyyygggrrrrrrgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggyyyyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggGGGyyygggrrrrrrgggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggyyyGGGgggrrrrrrgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggGGGyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyyyygggrrrrrr" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggyyyGGGgggrrrrrr" />
+
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggGGGyyy" />
+    <phase duration="100"  state="gggrrrrrrgggrrrrrrgggrrrrrrgggyyyGGG" />
+  </tlLogic>
+</additional>

@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 using Simulation = libsumo::Simulation;
 using string = std::string;
@@ -29,12 +30,10 @@ class SumoClient {
     const string kNoWarnings = "true";
 
     vector<string> sumo_cmd_;
-    vector<std::unique_ptr<TrafficLight>> traffic_lights_;
+    vector<std::unique_ptr<TrafficLightImp>> traffic_lights_;
 
-    RetrieveStrategy* observation_strategy_;
-    RetrieveStrategy* reward_strategy_;
-
-
+    std::unique_ptr<RetrieveStrategy> observation_strategy_;
+    std::unique_ptr<RetrieveStrategy> reward_strategy_;
 
  public:
     SumoClient(
@@ -50,12 +49,14 @@ class SumoClient {
         addition_(addition),
         yellow_time_(yellow_time),
         random_seed_(random_seed) {
-            ProcessSimulation();
-            ProcessTrafficLights();
+            // std::cout << "success" << std::endl;
+            SetSimulation();
+            SetTrafficLights();
             SetStrategies();
+            
         }
 
-    void ProcessSimulation() {
+    void SetSimulation() {
         sumo_cmd_ = {
             path_to_sumo_,
             string("-n"),
@@ -78,21 +79,25 @@ class SumoClient {
         Simulation::start(sumo_cmd_);
     }
 
-    void ProcessTrafficLights() {
+    void SetTrafficLights() {
         vector<std::string> tls_ids = TrafficLight::getIDList();
         std::for_each(tls_ids.begin(), tls_ids.end(), [this](const string& id) {
-            traffic_lights_.emplace_back(std::make_unique<TrafficLight>(id, yellow_time_));
+            traffic_lights_.emplace_back(std::make_unique<TrafficLightImp>(id, yellow_time_));
         });
     }
 
     void SetStrategies() {
-        observation_strategy_ = new RetrieveObservation();
-        reward_strategy_ = new RetrieveReward();
+        observation_strategy_ = std::make_unique<ObservationStrategy>();
+        reward_strategy_ = std::make_unique<RewardStrategy>();
     }
 
-    // auto RetrieveObservation() {
-    //     // Implementation...
-    // }
+    decltype(auto) RetrieveObservation() { 
+        return std::any_cast<vector<vector<int>>>(observation_strategy_->Retrieve());
+    }
+
+    decltype(auto) RetrieveReward() {
+        return std::any_cast<vector<int>>(reward_strategy_->Retrieve());
+    }
 };
 
 

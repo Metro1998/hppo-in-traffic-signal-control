@@ -9,12 +9,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "sumoenv/main.cpp",
-                "sumoenv/traffic_light.cpp",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                "-L", "~/software/sumo/bin/",
-                "-lsumocpp"
-
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"

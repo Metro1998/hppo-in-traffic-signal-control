@@ -14,13 +14,9 @@ int main() {
     auto obs = sumo_client_.RetrieveObservation();
     auto rew = sumo_client_.RetrieveReward();
 
-    std::cout << rew.size() << std::endl;
+    // std::cout << rew[0] << std::endl;
 
-    for (const auto r: obs){
-        for (const auto _: r){
-            std::cout << _ << std::endl;
-        }
-    }
+    // std::cout << obs.size() << obs[0].size() << std::endl;
 
     // std::cout << res[0][0] << std::endl;
     // g++ -o main sumoenv/main.cpp sumoenv/traffic_light.cpp -L ~/software/sumo/bin/ -l sumocpp

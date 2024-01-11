@@ -1,29 +1,31 @@
 #ifndef RETRIEVE_STRATEGY_H
 #define RETRIEVE_STRATEGY_H
 
-#include <algorithm>
+
 #include <string>
 #include <vector>
-#include <unordered_map>
-#include <variant
+#include <variant>
 #include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
 #include "libsumo/libsumo.h"
 
 using TrafficLight = libsumo::TrafficLight;
 using Lane = libsumo::Lane;
 using string = std::string;
 template <typename T>
-using vector = std::vector<T>
+using vector = std::vector<T>;
 using ContainerVariant = std::variant<
     std::vector<std::vector<int>>,
-    std::vector<std:
+    std::vector<float>,
     std::vector<std::pair<float, float>>
 >;
 
 class RetrieveStrategy {
   public:
     RetrieveStrategy();
-    virtual const std::unordered_map<string, ContainerVariant>& Retrieve() = 0;
+    virtual void Retrieve(std::unordered_map<string, ContainerVariant>& context) = 0;
     virtual ~RetrieveStrategy();
 
   protected:
@@ -38,20 +40,16 @@ class RetrieveStrategy {
 
 class ObservationStrategy : public RetrieveStrategy {
   public:
-    ObservationStrategy();
-    const std::unordered_map<string, ContainerVariant>& Retrieve() override;
-  
-  private:
-    std::unordered_map<string, ContainerVariant> observation;
+    ObservationStrategy() = default;
+    void Retrieve(std::unordered_map<string, ContainerVariant>& context) override;
+    
 };
 
 class RewardStrategy : public RetrieveStrategy {
   public:
-    RewardStrategy();
-    const std::unordered_map<string, ContainerVariant>& Retrieve() override;
+    RewardStrategy() = default;
+    void Retrieve(std::unordered_map<string, ContainerVariant>& context) override;
   
-  private:
-    std::unordered_map<string, ContainerVariant> reward;
 };
 
 #endif // RETRIEVE_STRATEGY_H

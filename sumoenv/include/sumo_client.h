@@ -2,12 +2,13 @@
 #define SUMOCLIENT_H
 
 #include <vector>
-#include <unordered_map>
-#include <variant>
+
 #include <memory>
 #include <string>
-#include <algorithm>
+#include <variant>
 #include <iostream>
+#include <algorithm>
+#include <unordered_map>
 
 #include <libsumo/libsumo.h>
 
@@ -19,12 +20,12 @@ using string = std::string;
 template <typename T>
 using vector = std::vector<T>;
 using ContainerVariant = std::variant<
-    std::vector<int>,
-    std::pair<float, float>
+    std::vector<std::vector<int>>,
+    std::vector<float>,
+    std::vector<std::pair<float, float>>
 >;
 
-
-class SumoClient {
+class SumoClient { 
  private:
     string path_to_sumo_;
     string net_;
@@ -32,6 +33,8 @@ class SumoClient {
     string addition_;
     int yellow_time_;
     int random_seed_;
+    std::unordered_map<string, ContainerVariant> observation_;
+    std::unordered_map<string, ContainerVariant> reward_;
 
     const string kMaxDepartDelay = "-1";
     const string kWaitingTimeMemory = "1000";
@@ -57,8 +60,8 @@ class SumoClient {
     void SetSimulation();
     void SetTrafficLights();
     void SetStrategies();
-    const std::unordered_map<string, ContainerVariant>& RetrieveObservation();
-    const std::unordered_map<string, ContainerVariant>& RetrieveReward();
+    void RetrieveObservation();
+    void RetrieveReward();
 };
 
 #endif // SUMOCLIENT_H

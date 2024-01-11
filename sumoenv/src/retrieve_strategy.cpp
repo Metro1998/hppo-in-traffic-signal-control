@@ -1,6 +1,9 @@
 #include "retrieve_strategy.h"
 
-RetrieveStrategy::RetrieveStrategy() = default;
+RetrieveStrategy::RetrieveStrategy() {
+    ProcessTlsId();
+    ProcessLanes();
+};
 RetrieveStrategy::~RetrieveStrategy() = default;
 
 void RetrieveStrategy::ProcessTlsId() {
@@ -32,12 +35,7 @@ void RetrieveStrategy::RemoveElements_(vector<string>& lanes) {
     // 这个函数的实现似乎是空的，所以暂时留空。
 }
 
-ObservationStrategy::ObservationStrategy() : RetrieveStrategy() {
-    ProcessTlsId();
-    ProcessLanes();
-}
-
-const std::unordered_map<string, ContainerVariant>& ObservationStrategy::Retrieve() {
+void ObservationStrategy::Retrieve(std::unordered_map<string, ContainerVariant>& context) {
     vector<vector<int>> queue_length;
 
     for (const string& tl_id : tl_ids_) {
@@ -49,17 +47,13 @@ const std::unordered_map<string, ContainerVariant>& ObservationStrategy::Retriev
         queue_length.push_back(lane_vehicles_for_tl);
     }
 
-    observation["queue_length"] = std::move(queue_length);
+    context["queue_length"] = std::move(queue_length);
 
-    return observation;
+    return;
 }
 
-RewardStrategy::RewardStrategy() : RetrieveStrategy() {
-    ProcessTlsId();
-    ProcessLanes();
-}
 
-const std::unordered_map<string, ContainerVariant>& RewardStrategy::Retrieve() {
+void RewardStrategy::Retrieve(std::unordered_map<string, ContainerVariant>& context) {
     // total queue_length of one trffic light
     vector<float> queue_length_tl;
 
@@ -70,6 +64,6 @@ const std::unordered_map<string, ContainerVariant>& RewardStrategy::Retrieve() {
         }
         queue_length_tl.push_back(vehicles_for_tl);
     }
-    reward["queue_length_tl"] = std::move(queue_length_tl);
-    return reward;
+    context["queue_length_tl"] = std::move(queue_length_tl);
+    return;
 }

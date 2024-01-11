@@ -11,8 +11,8 @@ int main() {
         42
     );
 
-    auto obs = sumo_client_.RetrieveObservation();
-    auto rew = sumo_client_.RetrieveReward();
+    sumo_client_.RetrieveObservation();
+    sumo_client_.RetrieveReward();
 
     // std::cout << rew[0] << std::endl;
 

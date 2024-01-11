@@ -55,10 +55,12 @@ void SumoClient::SetStrategies() {
     reward_strategy_ = std::make_unique<RewardStrategy>();
 }
 
-const std::unordered_map<string, ContainerVariant>& SumoClient::RetrieveObservation() {
-    return std::any_cast<vector<vector<int>>>(observation_strategy_->Retrieve());
+void SumoClient::RetrieveObservation() {
+    observation_strategy_->Retrieve(this->observation_);
+    return;
 }
 
-const std::unordered_map<string, ContainerVariant>& SumoClient::RetrieveReward() {
-    return std::any_cast<vector<float>>(reward_strategy_->Retrieve());
+void SumoClient::RetrieveReward() {
+    reward_strategy_->Retrieve(this->reward_);
+    return;
 }

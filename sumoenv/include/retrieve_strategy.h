@@ -13,13 +13,16 @@
 
 using TrafficLight = libsumo::TrafficLight;
 using Lane = libsumo::Lane;
+using Vehicle = libsumo::Vehicle;
 using string = std::string;
 template <typename T>
 using vector = std::vector<T>;
 using ContainerVariant = std::variant<
-    std::vector<std::vector<int>>,
-    std::vector<float>,
-    std::vector<std::pair<float, float>>
+    vector<vector<int>>,
+    vector<vector<double>>,
+    vector<vector<vector<double>>>,
+    vector<int>,
+    vector<std::pair<float, float>>
 >;
 
 class RetrieveStrategy {

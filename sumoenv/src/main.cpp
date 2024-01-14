@@ -11,10 +11,13 @@ int main() {
         42
     );
 
-    sumo_client_.RetrieveObservation();
-    sumo_client_.RetrieveReward();
+    
+    // sumo_client_.RetrieveReward();
 
-    // std::cout << rew[0] << std::endl;
+    const auto& obs = sumo_client_.RetrieveObservation();
+
+    const auto& res = std::get<std::vector<std::vector<double>>>(obs.at("lane_length"));
+    std::cout << res.size() << res[0].size() << std::endl;
 
     // std::cout << obs.size() << obs[0].size() << std::endl;
 

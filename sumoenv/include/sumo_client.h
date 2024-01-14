@@ -16,14 +16,15 @@
 #include "retrieve_strategy.h"
 
 using Simulation = libsumo::Simulation;
-using string = std::string;
-template <typename T>
-using vector = std::vector<T>;
-using ContainerVariant = std::variant<
-    std::vector<std::vector<int>>,
-    std::vector<float>,
-    std::vector<std::pair<float, float>>
->;
+// using string = std::string;
+// template <typename T>
+// using vector = std::vector<T>;
+// using ContainerVariant = std::variant<
+//     std::vector<std::vector<int>>,
+//     std::vector<std::vector<double>>,
+//     std::vector<int>,
+//     std::vector<std::pair<float, float>>
+// >;
 
 class SumoClient { 
  private:
@@ -60,8 +61,8 @@ class SumoClient {
     void SetSimulation();
     void SetTrafficLights();
     void SetStrategies();
-    void RetrieveObservation();
-    void RetrieveReward();
+    const std::unordered_map<string, ContainerVariant>& RetrieveObservation();
+    const std::unordered_map<string, ContainerVariant>& RetrieveReward();
 };
 
 #endif // SUMOCLIENT_H

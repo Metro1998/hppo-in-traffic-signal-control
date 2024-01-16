@@ -1,18 +1,26 @@
 #include "sumo_client.h"
 
+const string SumoClient::kMaxDepartDelay = "-1";
+const string SumoClient::kWaitingTimeMemory = "1000";
+const string SumoClient::kTimeToTeleport = "-1";
+const string SumoClient::kNoWarnings = "true";
+
+
 SumoClient::SumoClient(
     const string& path_to_sumo,
     const string& net,
     const string& route,
     const string& addition,
     const int yellow_time,
-    const int random_seed
+    const int random_seed,
+    const double end_time
 ) : path_to_sumo_(path_to_sumo),
     net_(net),
     route_(route),
     addition_(addition),
     yellow_time_(yellow_time),
-    random_seed_(random_seed) {
+    random_seed_(random_seed),
+    end_time_(end_time) {
         SetSimulation();
         SetTrafficLights();
         SetStrategies();
@@ -22,11 +30,11 @@ void SumoClient::SetSimulation() {
     Simulation::close();
     sumo_cmd_ = {
         path_to_sumo_,
-        string("-n"),
+        string("-net-file"),
         net_,
-        string("-r"),
+        string("-route-files"),
         route_,
-        string("-a"),
+        string("-additional-files"),
         addition_,
         string("--max-depart-delay"),
         kMaxDepartDelay,
@@ -37,7 +45,9 @@ void SumoClient::SetSimulation() {
         string("--no-warnings"),
         kNoWarnings,
         string("--seed"),
-        std::to_string(random_seed_)
+        std::to_string(random_seed_),
+        string("--end"),
+        std::to_string(end_time_)
     };
     auto res = Simulation::start(sumo_cmd_);
     std::cout << res.second << std::endl;

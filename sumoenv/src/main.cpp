@@ -8,7 +8,8 @@ int main() {
         "./4_4_high.rou.xml",
         "4_4.add.xml",
         3,
-        42
+        42,
+        3600.0
     );
 
     

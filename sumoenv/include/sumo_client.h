@@ -16,37 +16,28 @@
 #include "retrieve_strategy.h"
 
 using Simulation = libsumo::Simulation;
-// using string = std::string;
-// template <typename T>
-// using vector = std::vector<T>;
-// using ContainerVariant = std::variant<
-//     std::vector<std::vector<int>>,
-//     std::vector<std::vector<double>>,
-//     std::vector<int>,
-//     std::vector<std::pair<float, float>>
-// >;
-
 class SumoClient { 
  private:
-    string path_to_sumo_;
-    string net_;
-    string route_;
-    string addition_;
-    int yellow_time_;
-    int random_seed_;
-    std::unordered_map<string, ContainerVariant> observation_;
-    std::unordered_map<string, ContainerVariant> reward_;
+    const string path_to_sumo_;
+    const string net_;
+    const string route_;
+    const string addition_;
+    const int yellow_time_;
+    const int random_seed_;
+    const double end_time_; 
 
-    const string kMaxDepartDelay = "-1";
-    const string kWaitingTimeMemory = "1000";
-    const string kTimeToTeleport = "-1";
-    const string kNoWarnings = "true";
+    static const string kMaxDepartDelay;
+    static const string kWaitingTimeMemory;
+    static const string kTimeToTeleport;
+    static const string kNoWarnings;
 
     vector<string> sumo_cmd_;
     vector<std::unique_ptr<TrafficLightImp>> traffic_lights_;
-
     std::unique_ptr<RetrieveStrategy> observation_strategy_;
     std::unique_ptr<RetrieveStrategy> reward_strategy_;
+
+    std::unordered_map<string, ContainerVariant> observation_;
+    std::unordered_map<string, ContainerVariant> reward_;
 
  public:
     SumoClient(
@@ -54,15 +45,25 @@ class SumoClient {
         const string& net,
         const string& route,
         const string& addition,
-        const int yellow_time,
-        const int random_seed
+        int yellow_time,
+        int random_seed,
+        double end_time
     );
 
     void SetSimulation();
     void SetTrafficLights();
-    void SetStrategies();
-    const std::unordered_map<string, ContainerVariant>& RetrieveObservation();
+    void SetStrategies(); // 这些成员函数的归属 也是一个值得讨论的问题
+    const std::unordered_map<string, ContainerVariant>& RetrieveObservation(); // 这里会有好几层引用传递的问题
     const std::unordered_map<string, ContainerVariant>& RetrieveReward();
+
+    void reset();
+    void step();
+    void close();
+
+    //当这些最基础的东西成熟之后，至少现在有点零乱
+    //sumoenv？
+
+
 };
 
 #endif // SUMOCLIENT_H

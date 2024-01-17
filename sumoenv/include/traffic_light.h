@@ -8,13 +8,12 @@
 
 class TrafficLightImp {
  public:
-    TrafficLightImp(const std::string& tls_id, int yellow_time);
-    ~TrafficLightImp();
-
-    int Check();
-    inline void SchedulePop();
-    void SetStageDuration(int stage, int duration);
-
+   TrafficLightImp(const std::string& tls_id, int yellow_time);
+   ~TrafficLightImp();
+   
+   int Check();
+   inline void Pop();
+   void SetStageDuration(int stage, int duration);
     
    //  void UpdateLanes();
 
@@ -22,10 +21,8 @@ class TrafficLightImp {
     int stage_pre_;
     int yellow_time_;
     std::string tl_ids_;
-    std::deque<int> schedule_;
+    std::deque<int> schedule_; 
     std::vector<std::vector<int>> mapping_;
-    void ExtendGreenLight();
-
 };
 
 

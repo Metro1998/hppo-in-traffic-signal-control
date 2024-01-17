@@ -38,7 +38,6 @@ class RetrieveStrategy {
     void ProcessTlsId();
     void ProcessLanes();
     void RemoveElements(vector<string>& lanes);
-    void RemoveElements_(vector<string>& lanes);
 };
 
 class ObservationStrategy : public RetrieveStrategy {

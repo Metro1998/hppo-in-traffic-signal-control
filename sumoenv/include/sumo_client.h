@@ -50,14 +50,14 @@ class SumoClient {
         double end_time
     );
 
-    void SetSimulation();
+    void Reset();
     void SetTrafficLights();
-    void SetStrategies(); // 这些成员函数的归属 也是一个值得讨论的问题
+    void SetStrategies();
     const std::unordered_map<string, ContainerVariant>& RetrieveObservation(); // 这里会有好几层引用传递的问题
     const std::unordered_map<string, ContainerVariant>& RetrieveReward();
 
-    void reset();
-    void step();
+    
+    void Step(const vector<std::pair<int, int>>& action); 
     void close();
 
     //当这些最基础的东西成熟之后，至少现在有点零乱

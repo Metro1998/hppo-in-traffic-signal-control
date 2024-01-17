@@ -30,17 +30,23 @@ int TrafficLightImp::Check() {
     if (schedule_.empty()) {
         throw std::runtime_error("Error: Schedule is empty.");
     }
-    ExtendGreenLight();
+    if (schedule_.front() > 0) {
+        TrafficLight::setPhase(tl_ids_, stage_pre_);
+        schedule_.insert(schedule_.end(), schedule_.front(), 0);
+        schedule_.pop_front();
+        schedule_.push_back(-1);
+    }
     return schedule_.front();
 }
 
-// SchedulePop method
-void TrafficLightImp::SchedulePop() {
+void TrafficLightImp::Pop() {
     schedule_.pop_front();
+    return;
 }
 
+
 // SetStageDuration method
-void TrafficLightImp::SetStageDuration(const int stage, const int duration) {
+void TrafficLightImp::SetStageDuration(int stage, int duration) {
     if (stage_pre_ != -1 && stage_pre_ != stage){
         int yellow_stage = mapping_[stage_pre_][stage];
         TrafficLight::setPhase(tl_ids_, yellow_stage);
@@ -50,13 +56,3 @@ void TrafficLightImp::SetStageDuration(const int stage, const int duration) {
     schedule_.push_back(duration);
 }
 
-
-// ExtendGreenLight method
-void TrafficLightImp::ExtendGreenLight() {
-    if (schedule_.front() > 0) {
-        TrafficLight::setPhase(tl_ids_, stage_pre_);
-        schedule_.insert(schedule_.end(), schedule_.front(), 0);
-        schedule_.pop_front();
-        schedule_.push_back(-1);
-    }
-}

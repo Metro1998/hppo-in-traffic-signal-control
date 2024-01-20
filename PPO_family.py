@@ -102,6 +102,7 @@ class PPOBuffer:
         # the next line computes rewards-to-go, to be targets for the value function
         self.ret_buf[path_slice] = discount_cumsum(rews, self.gamma)[:-1]
         self.path_start_dix = self.ptr
+
     def get(self, batch_size):
         """
         Call this at the end of an epoch to get all of the data from
@@ -177,6 +178,7 @@ class ActorCritic_Discrete(nn.Module):
             nn.Linear(mid_dim[2], action_dim),
             nn.Softmax(dim=-1)
         )
+
     def act(self, state):
         state_value = self.critic.forward(state)
         action_probs = self.actor(state)
@@ -184,6 +186,7 @@ class ActorCritic_Discrete(nn.Module):
         action = dist.sample()
         action_logprob = dist.log_prob(action)
         return state_value, action, action_logprob
+    
     def get_logprob_entropy(self, state, action):
         action_probs = self.actor(state)
         dist = Categorical(action_probs)
@@ -220,6 +223,7 @@ class ActorCritic_Continuous(nn.Module):
             nn.Tanh(),
             nn.Linear(mid_dim[2], action_dim)
         )
+
     def act(self, state):
         state_value = self.critic.forward(state)
         mean = self.actor(state)
@@ -228,6 +232,7 @@ class ActorCritic_Continuous(nn.Module):
         action = dist.sample()
         action_logprob = dist.log_prob(action)
         return state_value, action, action_logprob
+    
     def get_logprob_entropy(self, state, action):
         mean = self.actor(state)
         std = torch.exp(self.log_std)
@@ -255,6 +260,7 @@ class ActorCritic_Hybrid(nn.Module):
             nn.Tanh(),
             nn.Linear(mid_dim[2], 1)
         )
+
         self.actor_con = nn.Sequential(
             nn.Linear(state_dim, mid_dim[0]),
             nn.Tanh(),
@@ -264,6 +270,7 @@ class ActorCritic_Hybrid(nn.Module):
             nn.Tanh(),
             nn.Linear(mid_dim[2], action_dim),
         )
+
         self.actor_dis = nn.Sequential(
             nn.Linear(state_dim, mid_dim[0]),
             nn.Tanh(),
@@ -274,6 +281,7 @@ class ActorCritic_Hybrid(nn.Module):
             nn.Linear(mid_dim[2], action_dim),
             nn.Softmax(dim=-1)
         )
+
     def act(self, state):
         state_value = self.critic.forward(state)
         action_probs = self.actor_dis(state)
@@ -412,11 +420,13 @@ class PPO_Discrete(PPO_Abstract, ABC):
         self.agent_old = ActorCritic_Discrete(state_dim, action_dim, mid_dim).to(device)
         self.agent_old.load_state_dict(self.agent.state_dict())
         self.optimizer_actor = torch.optim.Adam(self.agent.actor.parameters(), lr=lr_actor)
+
     def select_action(self, state):
         with torch.no_grad():
             state = torch.FloatTensor(state).to(self.device)
             state_value, action, log_prob = self.agent_old.act(state)
         return state_value.squeeze().cpu().numpy(), action.cpu().numpy(), log_prob.cpu().numpy()
+    
     def compute_loss_pi(self, data):
         obs, act_dis, _, adv, _, logp_old_dis, _, _ = data
 
@@ -427,11 +437,13 @@ class PPO_Discrete(PPO_Abstract, ABC):
         # Useful extra info
         approx_kl = (logp_old_dis - logp).mean().item()
         return loss_pi, approx_kl
+    
     def compute_loss_v(self, data):
         obs, _, _, _, ret, _, _, _ = data
         state_values = self.agent.critic(obs)
         print(obs.requires_grad)
         return self.loss_func(state_values, ret)
+    
     def update(self, batch_size):
         # For monitor
         pi_loss_epoch = 0
@@ -511,10 +523,12 @@ class PPO_Continuous(PPO_Abstract, ABC):
         approx_kl = (logp_old_con - logp).mean().item()
         print(self.agent.log_std)
         return loss_pi, approx_kl
+    
     def compute_loss_v(self, data):
         obs, _, _, _, ret, _, _, ptr = data
         state_values = self.agent.critic(obs).gather(1, ptr.view(-1, 1)).squeeze()
         return self.loss_func(state_values, ret)
+    
     def update(self, batch_size):
         # For monitor
         pi_loss_epoch = 0
@@ -583,6 +597,7 @@ class PPO_Hybrid(PPO_Abstract, ABC):
             state = torch.FloatTensor(state).to(self.device)
             state_value, action_dis, action_con, log_prob_dis, log_prob_con = self.agent_old.act(state)
         return state_value.squeeze().cpu().numpy(), (action_dis.cpu().numpy(), action_con.cpu().numpy()), (log_prob_dis.cpu().numpy(), log_prob_con.cpu().numpy())
+    
     def compute_loss_pi(self, data):
         obs, act_dis, act_con, adv, _, logp_old_dis, logp_old_con, _ = data
 
@@ -600,11 +615,13 @@ class PPO_Hybrid(PPO_Abstract, ABC):
         approx_kl_con = (logp_old_con - logp_con).mean().item()
         print(self.agent.log_std)
         return loss_pi_dis, loss_pi_con, approx_kl_dis, approx_kl_con
+    
     def compute_loss_v(self, data):
         obs, act_dis, _, _, ret, _, _, _ = data
 
         state_values = self.agent.critic(obs)
         return self.loss_func(state_values, ret)
+    
     def update(self, batch_size):
         # For monitor
         pi_loss_dis_epoch = 0

@@ -39,10 +39,10 @@ int TrafficLightImp::Check() {
     return schedule_.front();
 }
 
-void TrafficLightImp::Pop() {
-    schedule_.pop_front();
-    return;
-}
+// void TrafficLightImp::Pop() {
+//     schedule_.pop_front();
+//     return;
+// }
 
 
 // SetStageDuration method

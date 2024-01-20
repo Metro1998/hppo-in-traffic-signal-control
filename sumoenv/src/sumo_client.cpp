@@ -33,38 +33,11 @@ SumoClient::SumoClient(
         "--seed", std::to_string(random_seed),
         "--end", std::to_string(end_time)
     })
-    {
+    {   
         auto res = Simulation::start(sumo_cmd_);
         SetTrafficLights();
         SetStrategies();
     }
-
-// void SumoClient::SetSimulation() {
-//     Simulation::close();
-//     sumo_cmd_ = {
-//         path_to_sumo_,
-//         string("-net-file"),
-//         net_,
-//         string("-route-files"),
-//         route_,
-//         string("-additional-files"),
-//         addition_,
-//         string("--max-depart-delay"),
-//         kMaxDepartDelay,
-//         string("--waiting-time-memory"),
-//         kWaitingTimeMemory,
-//         string("--time-to-teleport"),
-//         kTimeToTeleport,
-//         string("--no-warnings"),
-//         kNoWarnings,
-//         string("--seed"),
-//         std::to_string(random_seed_),
-//         string("--end"),
-//         std::to_string(end_time_)
-//     };
-//     auto res = Simulation::start(sumo_cmd_);
-//     std::cout << res.second << std::endl;
-// }
 
 void SumoClient::SetTrafficLights() {
     vector<std::string> tls_ids = TrafficLight::getIDList();
@@ -74,18 +47,12 @@ void SumoClient::SetTrafficLights() {
 }
 
 void SumoClient::SetStrategies() {
-    observation_strategy_ = std::make_unique<ObservationStrategy>();
-    reward_strategy_ = std::make_unique<RewardStrategy>();
+    retrieve_strategy_imp_ = std::make_unique<RetrieveStrategyImp>();
 }
 
-const std::unordered_map<string, ContainerVariant>& SumoClient::RetrieveObservation() {
-    observation_strategy_->Retrieve(this->observation_);
-    return observation_;
-}
-
-const std::unordered_map<string, ContainerVariant>& SumoClient::RetrieveReward() {
-    reward_strategy_->Retrieve(this->reward_);
-    return reward_;
+const std::unordered_map<string, ContainerVariant>& SumoClient::Retrieve() {
+    retrieve_strategy_imp_->Retrieve(this->context_);
+    return context_;
 }
 
 void SumoClient::Reset() {
@@ -110,21 +77,47 @@ void SumoClient::Step(const vector<std::pair<int, int>>& action) {
             tl->Pop();
         }
 
-        if (std::find(checks.begin(), checks.end(), 1) != checks.end() || todo) {
+        if (std::find(checks.begin(), checks.end(), 1) != checks.end() || Simulation::getTime() >= Simulation::getEndTime()) {
             vector<int> agents_to_update = std::move(checks);
             break;
-            // todo
         }
     }
+    retrieve_strategy_imp_->Retrieve(this->context_);
 
-    observation_strategy_->Retrieve(this->observation_);
-    reward_strategy_->Retrieve(this->reward_);
+    State state = Allocate();
+    return;
+}
 
+
+void SumoClient::TempTest() {
+    Simulation::step();
+    Simulation::step();
+    double res = Simulation::getEndTime();
+    std::cout << "time:" << Simulation::getTime() << std::endl;
+    std::cout << "cur_time:" << Simulation::getCurrentTime() << std::endl;
+    std::cout << Simulation::getEndTime() << std::endl;
+    // gdb debug
+    // time
+    // reset step close
     
+}
 
 
+ while True:
 
- [tl.get_subscription_result() for tl in self.tls]
+            self.sumo.simulationStep()
+            checks = [tl.check() for tl in self.tls]
+            [tl.pop() for tl in self.tls]
+
+            self._step += 1
+            if self._step >= self.max_step_episode:
+                self.terminated = True
+
+            if -1 in checks or self.terminated:
+                self.agents_to_update = -np.array(checks, dtype=np.int64)
+                break
+
+        [tl.get_subscription_result() for tl in self.tls]
 
         if self.observation_pattern == 'queue':
             observation = np.array([tl.retrieve_queue() for tl in self.tls]).flatten()
@@ -134,3 +127,18 @@ void SumoClient::Step(const vector<std::pair<int, int>>& action) {
             raise NotImplementedError
         
         reward = np.array([self.tls[i].retrieve_reward() if self.agents_to_update[i] else float('inf') for i in range(self.num_agent)])
+        
+        # global reward is for CTDE architecture e.g., MAPPO
+        for i in range(self.num_agent):
+            if self.agents_to_update[i]:
+                self.queue_cur[i] = np.array([tl.retrieve_queue() for tl in self.tls]).sum()
+                self.global_reward[i] = self.queue_old[i] - self.queue_cur[i]
+                self.queue_old[i] = self.queue_cur[i]
+                
+        left_time = np.array([0 if self.agents_to_update[i] == 1 else tl.retrieve_left_time() for i, tl in enumerate(self.tls)])
+
+        info = {'agents_to_update': self.agents_to_update, 'terminated': self.terminated, 'queue': np.array([sum(tl.retrieve_queue()) for tl in self.tls]).sum(),
+                'left_time': left_time, 'global_reward': self.global_reward}
+
+        return observation, reward, False, False, info
+

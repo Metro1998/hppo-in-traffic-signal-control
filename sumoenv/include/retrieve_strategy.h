@@ -40,18 +40,17 @@ class RetrieveStrategy {
     void RemoveElements(vector<string>& lanes);
 };
 
-class ObservationStrategy : public RetrieveStrategy {
+class RetrieveStrategyImp : public RetrieveStrategy {
   public:
-    ObservationStrategy() = default;
+    RetrieveStrategyImp() = default;
     void Retrieve(std::unordered_map<string, ContainerVariant>& context) override;
-    
 };
 
-class RewardStrategy : public RetrieveStrategy {
-  public:
-    RewardStrategy() = default;
-    void Retrieve(std::unordered_map<string, ContainerVariant>& context) override;
+// class RewardStrategy : public RetrieveStrategy {
+//   public:
+//     RewardStrategy() = default;
+//     void Retrieve(std::unordered_map<string, ContainerVariant>& context) override;
   
-};
+// };
 
 #endif // RETRIEVE_STRATEGY_H

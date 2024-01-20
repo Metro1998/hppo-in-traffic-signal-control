@@ -7,9 +7,12 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${workspaceFolder}/sumoenv/src/*.cpp",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-I${workspaceFolder}/sumoenv/include", 
+                "-L~/software/sumo/bin/",
+                "-lsumocpp"    
             ],
             "options": {
                 "cwd": "${fileDirname}"

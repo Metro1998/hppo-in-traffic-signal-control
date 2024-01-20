@@ -51,7 +51,8 @@ void RetrieveStrategy::RemoveElements(vector<string>& lanes) {
 }
 
 
-void ObservationStrategy::Retrieve(std::unordered_map<string, ContainerVariant>& context) {
+void RetrieveStrategyImp::Retrieve(std::unordered_map<string, ContainerVariant>& context) {
+    vector<int> trafficlight_queue_lengths(tl_ids_.size());
     vector<vector<double>> lane_lengths(tl_ids_.size());
     vector<vector<int>> lane_queue_lengths(tl_ids_.size());
     vector<vector<double>> lane_max_speeds(tl_ids_.size());
@@ -70,8 +71,9 @@ void ObservationStrategy::Retrieve(std::unordered_map<string, ContainerVariant>&
         vehicle_acceleratoins[tl_index].reserve(lanes.size());
 
         int lane_index = 0;
+        int trafficlight_queue_length = 0;
         for (const string& lane_id : lanes) {
-            std::cout << lanes.size() << std::endl;
+            trafficlight_queue_length += Lane::getLastStepHaltingNumber(lane_id);
             lane_lengths[tl_index].emplace_back(Lane::getLength(lane_id));
             lane_queue_lengths[tl_index].emplace_back(Lane::getLastStepHaltingNumber(lane_id));
             lane_max_speeds[tl_index].emplace_back(Lane::getMaxSpeed(lane_id));
@@ -87,9 +89,11 @@ void ObservationStrategy::Retrieve(std::unordered_map<string, ContainerVariant>&
 
             ++lane_index;
         }
+        trafficlight_queue_lengths[tl_index] = trafficlight_queue_length;
         ++tl_index;
     }
 
+    context["trafficlight_queue_length"] = std::move(trafficlight_queue_lengths);
     context["lane_length"] = std::move(lane_lengths);
     context["lane_queue_length"] = std::move(lane_queue_lengths);
     context["lane_max_speed"] = std::move(lane_max_speeds);
@@ -97,20 +101,5 @@ void ObservationStrategy::Retrieve(std::unordered_map<string, ContainerVariant>&
     context["vehicle_position"] = std::move(vehicle_positions);
     context["vehicle_acceleration"] = std::move(vehicle_acceleratoins);
 
-    return;
-}
-
-void RewardStrategy::Retrieve(std::unordered_map<string, ContainerVariant>& context) {
-    // total queue_length of one trffic light
-    vector<int> intersection_queue_length;
-
-    for (const string& tl_id : tl_ids_) {
-        int vehicles_for_tl = 0;
-        for (const auto& lane_id : in_lanes_map_[tl_id]) {
-            vehicles_for_tl += Lane::getLastStepHaltingNumber(lane_id);
-        }
-        intersection_queue_length.push_back(vehicles_for_tl);
-    }
-    context["intersection_queue_length"] = std::move(intersection_queue_length);
     return;
 }

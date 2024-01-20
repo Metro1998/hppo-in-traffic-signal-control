@@ -33,11 +33,9 @@ class SumoClient {
 
     vector<string> sumo_cmd_;
     vector<std::unique_ptr<TrafficLightImp>> traffic_lights_;
-    std::unique_ptr<RetrieveStrategy> observation_strategy_;
-    std::unique_ptr<RetrieveStrategy> reward_strategy_;
+    std::unique_ptr<RetrieveStrategy> retrieve_strategy_imp_;
 
-    std::unordered_map<string, ContainerVariant> observation_;
-    std::unordered_map<string, ContainerVariant> reward_;
+    std::unordered_map<string, ContainerVariant> context_;
 
  public:
     SumoClient(
@@ -53,12 +51,11 @@ class SumoClient {
     void Reset();
     void SetTrafficLights();
     void SetStrategies();
-    const std::unordered_map<string, ContainerVariant>& RetrieveObservation(); // 这里会有好几层引用传递的问题
-    const std::unordered_map<string, ContainerVariant>& RetrieveReward();
+    const std::unordered_map<string, ContainerVariant>& Retrieve(); // 这里会有好几层引用传递的问题
 
-    
     void Step(const vector<std::pair<int, int>>& action); 
     void close();
+    void TempTest();
 
     //当这些最基础的东西成熟之后，至少现在有点零乱
     //sumoenv？

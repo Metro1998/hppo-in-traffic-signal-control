@@ -1,17 +1,4 @@
 
-TODO LIST (if you have any other requests or feedback, please let me know by opening an issue.)
-
-- [ ] **Implement parallel acceleration based on EnvPool**
-
-- [ ] **Develop a state representation based on VectorNet**
-
-- [ ] **Create a new agent based on PPO+HyAR**
-
-
-
-
-
-
 # a-simple-implementation-of-hppo
 
 In this repository, utilizing hybrid proximal policy optimization ([H-PPO](https://dl.acm.org/doi/10.5555/3367243.3367356)), we have implemented the synchronous optimization of the signal staging (discrete parameter) and its corresponding duration (continuous parameter).  <code>PPO-family.py</code> and <code>environments</code> are involved in this repository.  

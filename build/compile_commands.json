@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/wolfie/software/github/hppo-in-traffic-signal-control/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/sumo.dir/main.cpp.o -c /home/wolfie/software/github/hppo-in-traffic-signal-control/main.cpp",
-  "file": "/home/wolfie/software/github/hppo-in-traffic-signal-control/main.cpp"
-}
-]

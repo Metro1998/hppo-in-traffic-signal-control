@@ -1,0 +1,37 @@
+------------ start ------------
+device:cuda
+max_episodes:500
+buffer_size:20000
+batch_size:256
+rolling_score_window:5
+agent_save_freq:5
+agent_update_freq:5
+lr_actor:0.0003
+lr_actor_param:0.001
+lr_std:0.004
+lr_decay_rate:0.995
+mid_dim:[256, 128, 64]
+gamma:0.99
+lam:0.8
+epochs_update:20
+v_iters:1
+target_kl_dis:0.025
+target_kl_con:0.05
+eps_clip:0.2
+max_norm_grad:5.0
+init_log_std:-1.0
+coeff_dist_entropy:0.005
+random_seed:1
+action_space_pattern:hybrid
+record_mark:coco
+if_use_active_selection:False
+init_bonus:0.01
+sumocfg:Env4
+num_stage:8
+num_agent:16
+yellow:3
+delta_time:15
+max_green:40
+min_green:10
+pattern:queue
+------------ end ------------

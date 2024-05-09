@@ -5,7 +5,8 @@ import gymnasium as gym
 import numpy as np
 import torch
 
-from src.hppo.HPPO import *
+from src.hyar.PPO import PPO_HyAR
+from src.hyar.ActionRepresentation_vae import Action_representation
 from utils import *
 from multiprocessing import Pool
 
@@ -30,7 +31,7 @@ class Trainer(object):
         # agent's hyperparameters
         self.mid_dim = args.mid_dim
         self.lr_actor = args.lr_actor
-        self.lr_critic = args.lr_actor_param
+        self.lr_critic = args.lr_critic
         self.lr_std = args.lr_std
         self.lr_decay_rate = args.lr_decay_rate
         self.target_kl_dis = args.target_kl_dis
@@ -46,6 +47,10 @@ class Trainer(object):
         self.random_seed = args.random_seed
         self.if_use_active_selection = args.if_use_active_selection
         self.init_bonus = args.init_bonus
+        
+        self.discrete_action_dim = args.discrete_action_dim
+        self.parameter_action_dim = args.parameter_action_dim
+        self.embed_lr = args.embed_lr
 
         # For save
         self.file_to_save = 'data/'
@@ -76,11 +81,15 @@ class Trainer(object):
         # And for continuous the number of stages are set to be 4!!!.
 
         self.indicator = np.random.randint(self.num_stage, size=self.num_agent)
+        
+        self.vaes = [Action_representation(self.obs_dim, self.num_stage, 1, self.discrete_action_dim, self.parameter_action_dim, self.embed_lr, self.lr_decay_rate, self.epochs_update,
+                                           self.buffer_size, self.batch_size, self.device)
+                    for i in range(self.num_agent)]
 
     
-    def push_history_hyar(self, idx, obs, residual_obs, act, param_act):
+    def push_history_hyar(self, idx, obs, act, param_act):
         self.history[idx]['obs'] = obs
-        self.history[idx]['residual_obs'] = residual_obs
+        # self.history[idx]['residual_obs'] = residual_obs
         self.history[idx]['act'] = act
         self.history[idx]['param_act'] = param_act
         
@@ -127,6 +136,16 @@ class Trainer(object):
             actions = np.array([stages, durations])
             logp_actions = np.array([value_action_logp[i][2] for i in range(self.num_agent)])
         
+        elif self.action_space_pattern == 'hyar':
+            values = np.array([value_action_logp[i][0] if agents_to_update[i] == 1 else 0 for i in range(self.num_agent)])  # np
+            stages = np.array([self.vaes[i].select_discrete_action(value_action_logp[i][1]) if agents_to_update[i] == 1 else -1 for i in range(self.num_agent)], dtype=np.int64) # np
+            durations = np.array([self.mapping(self.vaes[i].select_parameter_action(state[i], value_action_logp[i][2], value_action_logp[i][1])[0])[0] 
+                                  if agents_to_update[i] == 1 else -1 for i in range(self.num_agent)], dtype=np.int64)  #np
+            logp_stages = np.array([value_action_logp[i][3] if agents_to_update[i] == 1 else 0 for i in range(self.num_agent)], dtype=np.float32)
+            logp_durations = np.array([value_action_logp[i][4] if agents_to_update[i] == 1 else 0 for i in range(self.num_agent)], dtype=np.float32)
+            actions = np.array([stages, durations])
+            logp_actions = {"stage": logp_stages, "duration": logp_durations}
+            
         else:
             pass
         return values, actions, logp_actions
@@ -163,25 +182,13 @@ class Trainer(object):
         :return: instance of agent and env
         """
         agents = None
-        if self.action_space_pattern == 'discrete':
-            agents = [PPO_Discrete(self.obs_dim, self.num_stage, self.mid_dim, self.lr_actor, self.lr_critic,
-                                   self.lr_decay_rate, self.buffer_size, self.target_kl_dis, self.target_kl_con, self.gamma, self.lam, self.epochs_update,
-                                   self.v_iters, self.eps_clip, self.max_norm_grad, self.coeff_dist_entropy, random_seed, self.device)
+        if self.action_space_pattern == "hyar":
+            agents = [PPO_HyAR(self.obs_dim, self.discrete_action_dim, self.parameter_action_dim, self.mid_dim, self.lr_actor, self.lr_critic, self.lr_decay_rate,
+                               self.buffer_size, self.target_kl_dis, self.target_kl_con, self.gamma, self.lam, self.epochs_update, self.v_iters,
+                               self.eps_clip, self.max_norm_grad, self.coeff_dist_entropy, self.random_seed, self.device,
+                               self.lr_std, self.init_log_std)
                       for i in range(self.num_agent)]
-
-        elif self.action_space_pattern == 'continuous':
-            agents = [PPO_Continuous(self.obs_dim, self.num_stage, self.mid_dim, self.lr_actor, self.lr_critic, self.lr_decay_rate,
-                                     self.buffer_size, self.target_kl_dis, self.target_kl_con, self.gamma, self.lam, self.epochs_update, self.v_iters,
-                                     self.eps_clip, self.max_norm_grad, self.coeff_dist_entropy, random_seed, self.device,
-                                     self.lr_std, self.init_log_std)
-                      for i in range(self.num_agent)]
-
-        elif self.action_space_pattern == 'hybrid':
-            agents = [PPO_Hybrid(self.obs_dim, self.num_stage, self.mid_dim, self.lr_actor, self.lr_critic, self.lr_decay_rate,
-                                 self.buffer_size, self.target_kl_dis, self.target_kl_con, self.gamma, self.lam, self.epochs_update,self.v_iters,
-                                 self.eps_clip, self.max_norm_grad, self.coeff_dist_entropy, random_seed, self.device,
-                                 self.lr_std, self.init_log_std, self.if_use_active_selection, self.init_bonus)
-                      for i in range(self.num_agent)]
+        
             
         return agents
 
@@ -205,6 +212,7 @@ class Trainer(object):
 
         agents = self.initialize_agents(worker_idx)
         monitor = Monitor(self.rolling_score_window)
+        print('worker', worker_idx)
 
         norm_mean = np.zeros(shape=(self.num_agent, self.obs_dim))
         norm_std = np.ones(shape=(self.num_agent, self.obs_dim))
@@ -225,27 +233,33 @@ class Trainer(object):
                     observations = state.reshape(self.num_agent, -1)
                     observations_norm = (observations - norm_mean) / np.maximum(norm_std, 1e-6)
                     # Select action with policy
+                    # state_value, e, z_k, logp_e, logp_z_k
+                    # print(observations_norm)
                     value_action_logp = {i: agents[i].select_action(observations_norm[i]) for i in range(self.num_agent) if info['agents_to_update'][i] == 1}
                     values, actions, logp_actions = self.unbatchify(value_action_logp, info['agents_to_update'], observations_norm)
+                    # print(actions)
 
                     next_state, reward, done, truncated, info = env.step(actions)
-
-                    if self.action_space_pattern == 'continuous':
-                        [self.push_history_continuous(i, observations[i], value_action_logp[i][1], logp_actions[i], values[i])
+                    
+                    residual_state = np.array(next_state - state).reshape(self.num_agent, -1)
+                    residual_state = (residual_state - norm_mean) / np.maximum(norm_std, 1e-6)
+                   
+                    if self.action_space_pattern == "hyar":
+                        [self.push_history_hybrid(i, observations[i], value_action_logp[i][1], value_action_logp[i][2], value_action_logp[i][3], value_action_logp[i][4], value_action_logp[i][0])
+                         for i in range(self.num_agent) if agents_to_update[i] == 1] # logp应该能直接改掉 但是理论上不会有什么区别
+                        
+                        # param_act not embedding the real continuous action to be executed
+                        param_act = np.array([self.vaes[i].select_parameter_action(observations_norm[i], value_action_logp[i][2], value_action_logp[i][1])[0][0] if agents_to_update[i] == 1 else 0 for i in range(self.num_agent)], dtype=np.float32)
+                        
+                        # print(self.vaes[0].get_embedding(actions[0][0])) residual_state.reshape(self.num_agent, -1)[i]
+                        [self.push_history_hyar(i, observations[i], self.vaes[i].get_embedding(actions[0][i]), param_act[i])
                          for i in range(self.num_agent) if agents_to_update[i] == 1]
-                        [agents[i].buffer.store_con(self.history[i]['obs'], self.history[i]['act_con'], reward[i], self.history[i]['val'], self.history[i]['logp_act_con'], self.indicator[i])
+                        
+                        [agents[i].buffer.store(self.history[i]['obs'], self.history[i]['act_dis'], self.history[i]['act_con'], reward[i], self.history[i]['val'], self.history[i]['logp_act_dis'], self.history[i]['logp_act_con'])
                          for i in range(self.num_agent) if info['agents_to_update'][i] == 1]
-                        self.indicator = (self.indicator + info['agents_to_update']) % self.num_stage
+                        
 
-                    elif self.action_space_pattern == 'discrete':
-                        [agents[i].buffer.store_dis(observations[i], actions[0][i], reward[i], values[i], logp_actions[i])
-                         for i in range(self.num_agent)]
-
-                    elif self.action_space_pattern == 'hybrid':
-                        [self.push_history_hybrid(i, observations[i], actions[0][i], value_action_logp[i][1][1], logp_actions[0][i], logp_actions[1][i], values[i])
-                         for i in range(self.num_agent) if agents_to_update[i] == 1]
-
-                        [agents[i].buffer.store_hybrid(self.history[i]['obs'], self.history[i]['act_dis'], self.history[i]['act_con'], reward[i], self.history[i]['val'], self.history[i]['logp_act_dis'], self.history[i]['logp_act_con'])
+                        [self.vaes[i].buffer.store(self.history[i]['obs'], residual_state[i], self.history[i]['act'], self.history[i]['param_act'])
                          for i in range(self.num_agent) if info['agents_to_update'][i] == 1]
                         
                         
@@ -258,27 +272,33 @@ class Trainer(object):
                     state = next_state
                     agents_to_update = info['agents_to_update']
 
-                    # for evaluation
-                    # monitor.push_into_monitor(sum(info['queue']), sum(info['waiting_time']))
-
 
                     monitor.push_into_monitor(info['queue'], info['queue'])
 
                     if info['terminated']:
                         i_episode += 1
                         [agents[i].buffer.finish_path(0) for i in range(self.num_agent)]
+                        [self.vaes[i].buffer.finish_path(0) for i in range(self.num_agent)]
                         break
 
             if i_episode % self.agent_update_freq == 0:
+          
+                if i_episode > 3 * self.agent_update_freq:
+                    # if i_episode > 3 * self.agent_update_freq: # 先训练hyar
+                    [agents[i].update(self.batch_size) for i in range(self.num_agent)]
+                    [self.vaes[i].update() for i in range(self.num_agent)]
+                    
+                
+                
                 # For the trick of observation normalization
                 for i in range(self.num_agent):
-                    tmp = agents[i].buffer.filter()[0]
                     norm_mean[i] = np.tile(agents[i].buffer.filter()[0], self.obs_dim)
                     norm_std[i] = np.tile(agents[i].buffer.filter()[1], self.obs_dim)
-                if i_episode > self.agent_save_freq:
-                    [agents[i].update(self.batch_size) for i in range(self.num_agent)]
                 [agents[i].buffer.clear() for i in range(self.num_agent)]
-
+                [self.vaes[i].buffer.clear() for i in range(self.num_agent)]
+                
+                
+                
             if i_episode % self.agent_save_freq == 0:
                 file_to_save_policy = os.path.join(self.policy_save, 'i_episode{}_{}'.format(i_episode, worker_idx))
                 print('-----------------------------------------------------------------------------------')
@@ -299,15 +319,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--device', default=torch.device('cuda' if torch.cuda.is_available() else 'cpu'),
                         help='Device.')
-    parser.add_argument('--max_episodes', type=int, default=500, help='The max episodes per agent per run.')
+    parser.add_argument('--max_episodes', type=int, default=1000, help='The max episodes per agent per run.')
     parser.add_argument('--buffer_size', type=int, default=20000, help='The maximum size of the PPOBuffer.')
-    parser.add_argument('--batch_size', type=int, default=512, help='The sample batch size.')
+    parser.add_argument('--batch_size', type=int, default=128, help='The sample batch size.')
     parser.add_argument('--rolling_score_window', type=int, default=5,
                         help='Mean of last rolling_score_window.')  # TODO is there any need?
     parser.add_argument('--agent_save_freq', type=int, default=5, help='The frequency of the agent saving.')
     parser.add_argument('--agent_update_freq', type=int, default=5, help='The frequency of the agent updating.')
     parser.add_argument('--lr_actor', type=float, default=0.0003, help='The learning rate of actor_con.')   # carefully!
-    parser.add_argument('--lr_actor_param', type=float, default=0.001, help='The learning rate of critic.')
+    parser.add_argument('--lr_critic', type=float, default=0.001, help='The learning rate of critic.')
     parser.add_argument('--lr_std', type=float, default=0.004, help='The learning rate of log_std.')
     parser.add_argument('--lr_decay_rate', type=float, default=0.995, help='Factor of learning rate decay.')
     parser.add_argument('--mid_dim', type=list, default=[256, 128, 64], help='The middle dimensions of both nets.')
@@ -320,7 +340,7 @@ if __name__ == '__main__':
                         help='Number of gradient descent steps to take on value function per epoch.')
     parser.add_argument('--target_kl_dis', type=float, default=0.025,
                         help='Roughly what KL divergence we think is appropriate between new and old policies after an update. This will get used for early stopping. (Usually small, 0.01 or 0.05.)')
-    parser.add_argument('--target_kl_con', type=float, default=0.05,
+    parser.add_argument('--target_kl_con', type=float, default=0.025,
                         help='Roughly what KL divergence we think is appropriate between new and old policies after an update. This will get used for early stopping. (Usually small, 0.01 or 0.05.)')
     parser.add_argument('--eps_clip', type=float, default=0.2, help='The clip ratio when calculate surr.')
     parser.add_argument('--max_norm_grad', type=float, default=5.0, help='max norm of the gradients.')
@@ -329,22 +349,26 @@ if __name__ == '__main__':
     parser.add_argument('--coeff_dist_entropy', type=float, default=0.005,
                         help='The coefficient of distribution entropy.')
     parser.add_argument('--random_seed', type=int, default=1, help='The random seed.')
-    parser.add_argument('--action_space_pattern', type=str, default='hybrid',
+    parser.add_argument('--action_space_pattern', type=str, default='hyar',
                         help='The control pattern of the action.')
-    parser.add_argument('--record_mark', type=str, default='renaissance',
+    parser.add_argument('--record_mark', type=str, default='purplerain_14',
                         help='The mark that differentiates different experiments.')
     parser.add_argument('--if_use_active_selection', type=bool, default=False,
                         help='Whether use active selection in the exploration.')
     parser.add_argument('--init_bonus', type=float, default=0.01, help='The initial active selection bonus.')
     parser.add_argument('--sumocfg', type=str, default='Env4', help='The initial active selection bonus.')
     parser.add_argument('--num_stage', type=int, default=8)
-    parser.add_argument('--num_agent', type=int, default=16)
+    parser.add_argument('--num_agent', type=int, default=7)
     parser.add_argument('--yellow', type=int, default=3)
     parser.add_argument('--delta_time', type=int, default=15)
     parser.add_argument('--max_green', type=int, default=40)
     parser.add_argument('--min_green', type=int, default=10)
     parser.add_argument('--pattern', type=str, default='queue')
 
+    # hyar
+    parser.add_argument('--discrete_action_dim', type=int, default=2)
+    parser.add_argument('--parameter_action_dim', type=int, default=2)
+    parser.add_argument('--embed_lr', type=float, default=0.0001)    
     
     args = parser.parse_args()
 
@@ -358,7 +382,7 @@ if __name__ == '__main__':
 
     # training through multiprocess
     trainer = Trainer(args)
-    trainer.train(0)
+    trainer.train(31)
 
     # trainer.plot()
 
